@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GuardianKid — Privacy Policy</title>
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 4rem;
+      color: #1a1a1a;
+      background: #fff;
+    }
+    h1 { font-size: 1.9rem; margin-bottom: 0.25rem; }
+    h2 { font-size: 1.3rem; margin-top: 2.2rem; border-bottom: 1px solid #e5e5e5; padding-bottom: 0.3rem; }
+    h3 { font-size: 1.05rem; margin-top: 1.5rem; }
+    .updated { color: #666; font-size: 0.9rem; margin-bottom: 1.5rem; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0; font-size: 0.95rem; }
+    th, td { border: 1px solid #ddd; padding: 0.55rem 0.7rem; text-align: left; vertical-align: top; }
+    th { background: #f5f5f5; }
+    code { background: #f0f0f0; padding: 0.1rem 0.35rem; border-radius: 4px; font-size: 0.9em; }
+    a { color: #1a73e8; }
+    hr { border: none; border-top: 1px solid #e5e5e5; margin: 2rem 0; }
+    @media (prefers-color-scheme: dark) {
+      body { color: #e6e6e6; background: #121212; }
+      h2 { border-bottom-color: #333; }
+      th { background: #1e1e1e; }
+      th, td { border-color: #333; }
+      code { background: #1e1e1e; }
+      hr { border-top-color: #333; }
+      .updated { color: #aaa; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>GuardianKid — Privacy Policy</h1>
+  <p class="updated"><strong>Last updated: June 4, 2026</strong></p>
+
+  <p>GuardianKid (&ldquo;the app&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is a
+  parental-control and screen-time enforcement app for Android. This policy explains
+  what the app does with your information. The short version:
+  <strong>GuardianKid runs entirely on your device. It has no servers of its own,
+  does not require an account, and does not transmit your personal data
+  anywhere.</strong></p>
+
+  <hr>
+
+  <h2>What data the app processes, and where</h2>
+  <p>GuardianKid is designed to work <strong>offline, on-device</strong>. The
+  categories below are processed locally and are <strong>never uploaded to us</strong>
+  (we operate no servers).</p>
+
+  <h3>Camera / face detection</h3>
+  <ul>
+    <li>The app uses the <strong>front camera</strong> with on-device
+    <strong>face detection (Google ML Kit)</strong> to estimate how close the device
+    is being held to the user&rsquo;s face, so it can nudge the child to hold it
+    farther away.</li>
+    <li>Camera frames are analysed <strong>in memory and discarded immediately</strong>
+    after each frame. <strong>No photo or video is ever saved, cached, or
+    transmitted.</strong></li>
+    <li>The only value derived from a frame is a single number &mdash; the ratio of the
+    detected face&rsquo;s width to the image width &mdash; used to decide &ldquo;too
+    close&rdquo;. Faces are <strong>not</strong> identified, recognised, matched, or
+    stored.</li>
+  </ul>
+
+  <h3>App usage and the active app</h3>
+  <ul>
+    <li>To enforce blocking and time limits, the app needs to know which app is
+    currently in the foreground. It reads this via the <strong>Accessibility
+    Service</strong> and <strong>Usage Access</strong> permission.</li>
+    <li>This information is used <strong>only on the device, in real time</strong>, to
+    decide whether to show a lock screen. It is <strong>not logged off-device or
+    transmitted</strong>.</li>
+  </ul>
+
+  <h3>Settings and parent PIN</h3>
+  <ul>
+    <li>Your settings, schedules, and the <strong>parent PIN</strong> are stored
+    locally on the device using Android DataStore. The PIN is stored as a
+    <strong>salted hash</strong>, never in plain text. None of this leaves the
+    device.</li>
+  </ul>
+
+  <h3>Purchases</h3>
+  <ul>
+    <li>The optional one-time <strong>&ldquo;Premium unlock&rdquo;</strong> is processed
+    by <strong>Google Play Billing</strong>. We never see or store your payment details
+    &mdash; Google handles the transaction. The app only records, locally, whether
+    Premium has been unlocked.</li>
+  </ul>
+
+  <hr>
+
+  <h2>Permissions and why they are needed</h2>
+  <table>
+    <thead><tr><th>Permission</th><th>Why GuardianKid needs it</th></tr></thead>
+    <tbody>
+      <tr><td>Camera</td><td>On-device face detection to estimate viewing distance (frames are discarded immediately).</td></tr>
+      <tr><td>Accessibility Service</td><td>Detect the foreground app so blocked apps can be locked.</td></tr>
+      <tr><td>Usage Access (<code>PACKAGE_USAGE_STATS</code>)</td><td>Determine which app is in use for enforcement.</td></tr>
+      <tr><td>Display over other apps (<code>SYSTEM_ALERT_WINDOW</code>)</td><td>Show the full-screen lock / warning overlay.</td></tr>
+      <tr><td>Query all packages</td><td>List installed apps so a parent can choose which to block.</td></tr>
+      <tr><td>Device admin</td><td>Optional uninstall protection so a child cannot remove the app without the parent PIN.</td></tr>
+      <tr><td>Foreground service</td><td>Keep enforcement running reliably in the background.</td></tr>
+      <tr><td>Run on boot / restart alarms / ignore battery optimization</td><td>Keep enforcement active after a reboot or if the OS kills the service.</td></tr>
+      <tr><td>Notifications</td><td>Show the persistent foreground-service notification required by Android.</td></tr>
+    </tbody>
+  </table>
+  <p>All permissions are used solely for the parental-control features described above.</p>
+
+  <hr>
+
+  <h2>Crash and diagnostics data</h2>
+  <p>If crash reporting (Google <strong>Firebase Crashlytics</strong>) is enabled, the
+  app sends <strong>anonymous crash reports and diagnostic information</strong> (such as
+  the type of crash, device model, OS version, and an app-generated installation
+  identifier) to Google when the app crashes. This is used <strong>only to find and fix
+  bugs</strong>. It does <strong>not</strong> include your camera data, the apps you
+  block, your PIN, or any content you create. See Google&rsquo;s privacy policy:
+  <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a>.</p>
+
+  <hr>
+
+  <h2>What we do NOT do</h2>
+  <ul>
+    <li>We do <strong>not</strong> collect, sell, or share your personal data.</li>
+    <li>We do <strong>not</strong> show ads or use advertising/tracking SDKs.</li>
+    <li>We do <strong>not</strong> require an account or sign-in.</li>
+    <li>We do <strong>not</strong> store or upload photos, videos, or audio.</li>
+    <li>We do <strong>not</strong> track your location.</li>
+  </ul>
+
+  <hr>
+
+  <h2>Children&rsquo;s privacy</h2>
+  <p>GuardianKid is configured by a <strong>parent or guardian</strong> and may run on a
+  child&rsquo;s device. Because all processing happens <strong>on the device</strong> and
+  nothing is transmitted to us, the app does <strong>not knowingly collect personal
+  information from children</strong>. The parent controls all settings.</p>
+
+  <hr>
+
+  <h2>Data retention and deletion</h2>
+  <p>Because data stays on the device, <strong>uninstalling the app removes the locally
+  stored data</strong> (settings, PIN, Premium flag). Your Google Play purchase record is
+  held by Google and can be managed through your Google account.</p>
+
+  <hr>
+
+  <h2>Changes to this policy</h2>
+  <p>We may update this policy as the app evolves. The &ldquo;Last updated&rdquo; date at
+  the top will reflect any change.</p>
+
+  <h2>Contact</h2>
+  <p>Questions about this policy? Email <strong>ram.kasu@gmail.com</strong>.</p>
+
+</body>
+</html>
